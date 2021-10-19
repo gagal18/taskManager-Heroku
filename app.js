@@ -10,7 +10,7 @@ app.use(express.static('./public'))
 app.use(express.json())
 //Routes
 app.use('/api/v1/tasks' , tasks)
-
+console.log(process.env.MONGO_URI)
 const start = async () => {
     try {
         await connectDB(process.env.MONGO_URI)
