@@ -10,11 +10,10 @@ app.use(express.static('./public'))
 app.use(express.json())
 //Routes
 app.use('/api/v1/tasks' , tasks)
-console.log(process.env.MONGO_URI)
-console.log(cred.mongoUri)
+
 const start = async () => {
     try {
-        await connectDB(cred.mongoUri)
+        await connectDB(cred.mongoUri || process.env.MONGO_URI )
         app.listen(port , console.log(`Server is listening on port ${port}...`))
     } catch (error) {
         console.log(error)
