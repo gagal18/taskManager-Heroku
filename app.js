@@ -7,11 +7,19 @@ const tasks = require('./routes/Task.routes')
 const { mongoURI } = require('./creds')
 const notFound = require('./middleware/not-found')
 const errorHandler = require('./middleware/error-handler')
+// CORS
+var cors = require('cors')
+var corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200 ,
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+  }
 //middleware
-app.use(express.static('./public'))
+// app.use(express.static('./public'))
 app.use(express.json())
 //Routes
-app.use('/api/v1/tasks' , tasks)
+app.use('/api/v1/tasks', cors(corsOptions), tasks)
+
 
 app.use(notFound)
 app.use(errorHandler)
