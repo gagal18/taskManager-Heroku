@@ -27,7 +27,7 @@ app.use(errorHandler)
 
 const start = async () => {
     try {
-        await connectDB( mongoURI || process.env.MONGO_URI )
+        await connectDB( process.env.mongoURI )
         app.listen(port , console.log(`Server is listening on port ${port}...`))
     } catch (error) {
         console.log(error)
